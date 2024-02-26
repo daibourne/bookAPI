@@ -24,7 +24,7 @@ router.get('/books/:id', (req, res) => {
 router.put('/books/:id', (req, res) => {
     Books.findByIdAndUpdate(req.params.id)
     .then((updatedBook) => {
-        res.json(books);
+        res.json(Books);
     })
     .catch((err) => {
         res.status(404).json({ msg: 'Book not found' });
@@ -32,9 +32,22 @@ router.put('/books/:id', (req, res) => {
 });
 
 // DELETE ROUTE
+router.delete('/books/:id', (req, res) => {
+    Books.findByIdAndDelete(req.params.id)
+    .then(Books => {
+        res.json(Books);
+    })
+    .catch((err) => {
+        res.status(404).json({ msg: 'Book not found' });
+    });
+});
 
 
 // ADD BOOK ROUTE
-
+router.post('/books', (req, res) => {
+    Books.find().then(Books => {
+        res.json(Books);
+    });
+});
 
 module.exports = router;
