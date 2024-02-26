@@ -20,4 +20,21 @@ router.get('/books/:id', (req, res) => {
     });
 });
 
+// UPDATE BOOK ROUTE
+router.put('/books/:id', (req, res) => {
+    Books.findByIdAndUpdate(req.params.id)
+    .then((updatedBook) => {
+        res.json(books);
+    })
+    .catch((err) => {
+        res.status(404).json({ msg: 'Book not found' });
+    });
+});
+
+// DELETE ROUTE
+
+
+// ADD BOOK ROUTE
+
+
 module.exports = router;
