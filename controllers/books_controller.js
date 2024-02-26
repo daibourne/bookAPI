@@ -9,6 +9,15 @@ router.get('/books', (req, res) => {
     });
 });
 
-
+// SHOW ROUTE
+router.get('/books/:id', (req, res) => {
+    Books.findOne({ name: req.params.name.toLowerCase() })
+    .then((books) => {
+        res.json(books);
+    })
+    .catch((err) => {
+        res.status(404).json({ msg: 'Book not found' });
+    });
+});
 
 module.exports = router;
